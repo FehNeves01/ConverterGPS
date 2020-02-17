@@ -21,19 +21,11 @@ public class ConverterGPS {
      */
     public static void main(String[] args) {
         ArrayList <String> linhasDoArquivo = new ArrayList<String>();
+        String diretorio = "C:\\Users\\felip\\Desktop\\Felipe\\EXPRESS\\GPS\\06-02-2020.txt";
         
-        AbrirArquivo open = new AbrirArquivo("C:\\Users\\felip\\Desktop\\Felipe\\EXPRESS\\GPS\\06-02-2020.txt");
-        try {
-            linhasDoArquivo = open.abrirArquivo();
-        } catch (IOException ex) {
-            Logger.getLogger(ConverterGPS.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println("Quantidades Linhas do Arquivo  ||  " + linhasDoArquivo.size() );
+        TratandoArquivoAberto trat = new TratandoArquivoAberto(diretorio);
         
-        for (int i = 0; i < linhasDoArquivo.size(); i++) {
-            System.out.println(linhasDoArquivo.get(i));
-            
-        }
+        
     }
     
 }

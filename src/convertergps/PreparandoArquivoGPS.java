@@ -1,5 +1,9 @@
 package convertergps;
 
+import convertergps.pojo.Linha;
+import convertergps.pojo.Carro;
+import convertergps.pojo.GPS;
+import convertergps.pojo.Data;
 import java.util.ArrayList;
 
 /**

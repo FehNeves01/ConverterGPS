@@ -1,5 +1,5 @@
 
-package convertergps;
+package convertergps.pojo;
 
 /**
  *

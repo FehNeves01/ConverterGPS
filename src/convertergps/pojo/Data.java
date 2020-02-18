@@ -1,4 +1,4 @@
-package convertergps;
+package convertergps.pojo;
 
 import java.util.Calendar;
 

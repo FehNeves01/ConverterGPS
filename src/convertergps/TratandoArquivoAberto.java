@@ -39,19 +39,19 @@ public class TratandoArquivoAberto {
 
     private void tratandoLinhaDoArquivo() {
         for (int i = 0; i < Array_Str_LinhasDoArquivo.size(); i++) {
+    
 
             String vet[] = Array_Str_LinhasDoArquivo.get(i).split("	");
 
             objetoData(vet[0], vet[1]);
             objetoGPS(vet[4], vet[5]);
             objetoCarro(vet[3]);
-            objetoLinha(vet[2], vet[9], vet[8], vet[6], vet[7]);
+            objetoLinha(vet[8], vet[9], vet[2], vet[6], vet[7]);
 
 //            for (int j = 0; j < vet.length; j++) {
 //                System.out.print(vet[j] + " || ");
 //            }
 //            System.out.println("");
-
         }
     }
 
@@ -71,10 +71,10 @@ public class TratandoArquivoAberto {
     private void objetoCarro(String x) {
         Carro_car = new Carro();
         Carro_car.setCarro(x);
+        Array_Carro_Prefixos.add(Carro_car);
     }
 
-    private void objetoLinha(String str_codigoIdentificador, String str_sentido,
-            String str_numero, String str_codigoDaParada, String str_lugar) {
+    private void objetoLinha(String str_codigoIdentificador, String str_sentido, String str_numero, String str_codigoDaParada, String str_lugar) {
 
         Linha_linha = new Linha();
 
@@ -85,7 +85,6 @@ public class TratandoArquivoAberto {
         Linha_linha.setStr_lugar(str_lugar);
 
         Array_Linha_Linha.add(Linha_linha);
-
     }
 
     /*      Getter      */

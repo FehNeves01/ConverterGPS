@@ -21,10 +21,11 @@ public class ConverterGPS {
      */
     public static void main(String[] args) {
         ArrayList <String> linhasDoArquivo = new ArrayList<String>();
-        String diretorio = "C:\\Users\\felip\\Desktop\\Felipe\\EXPRESS\\GPS\\06-02-2020.txt";
+        String diretorio = "C:\\Users\\felip\\Desktop\\Felipe\\EXPRESS\\GPS\\04-02-2020.txt";
+        String diretorioMacOS ="/Users/felipeneves/documents/ARQUIVOS_EMPRESAS/express/gps/04-02-2020.txt";
         
-        TratandoArquivoAberto trat = new TratandoArquivoAberto(diretorio);
-        
+        //TratandoArquivoAberto trat = new TratandoArquivoAberto(diretorioMacOS);
+        PreparandoArquivoGPS open = new PreparandoArquivoGPS(diretorioMacOS);
         
     }
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package convertergps;
 
 /**
@@ -10,5 +5,18 @@ package convertergps;
  * @author felipeneves
  */
 public class Carro {
-    
+
+    private String Carro;
+
+    /*            Getter           */
+    public String getCarro() {
+        return Carro;
+    }
+
+
+    /*            Setter           */
+    public void setCarro(String Carro) {
+        this.Carro = Carro;
+    }
+
 }

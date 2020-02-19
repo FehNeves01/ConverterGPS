@@ -25,7 +25,7 @@ public class ConverterGPS {
         String diretorioMacOS ="/Users/felipeneves/documents/ARQUIVOS_EMPRESAS/express/gps/04-02-2020.txt";
         
         //TratandoArquivoAberto trat = new TratandoArquivoAberto(diretorioMacOS);
-        PreparandoArquivoGPS open = new PreparandoArquivoGPS(diretorioMacOS);
+        PreparandoArquivoGPS open = new PreparandoArquivoGPS(diretorio);
         
     }
     

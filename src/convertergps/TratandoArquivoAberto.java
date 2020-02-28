@@ -43,7 +43,7 @@ public class TratandoArquivoAberto {
 
     private void tratandoLinhaDoArquivo() {
         for (int i = 0; i < Array_Str_LinhasDoArquivo.size(); i++) {
-    
+        
 
             String vet[] = Array_Str_LinhasDoArquivo.get(i).split("	");
 
@@ -52,10 +52,6 @@ public class TratandoArquivoAberto {
             objetoCarro(vet[3]);
             objetoLinha(vet[8], vet[9], vet[2], vet[6], vet[7]);
 
-//            for (int j = 0; j < vet.length; j++) {
-//                System.out.print(vet[j] + " || ");
-//            }
-//            System.out.println("");
         }
     }
 

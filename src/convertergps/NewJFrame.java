@@ -6,6 +6,7 @@
 package convertergps;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,9 +21,12 @@ public class NewJFrame extends javax.swing.JFrame {
 
     ArrayList<String> diretorios;
     String diretorio;
-    ConverterGPS converter = new ConverterGPS();
+    ConverterGPS converter;
+    Zip zip;
 
     public NewJFrame() {
+        converter = new ConverterGPS();
+        zip = new Zip();
         initComponents();
     }
 
@@ -35,11 +39,14 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel_areaDiretorio = new javax.swing.JPanel();
         txtFild_recDiretorio = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton_abrirArquivo = new javax.swing.JButton();
         jButton_abrirPasta = new javax.swing.JButton();
+        jRadioButton_GPS = new javax.swing.JRadioButton();
+        jRadioButton_BIL = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel_areaEventos = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -47,6 +54,7 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton_converterVarios = new javax.swing.JButton();
         jButton_converterArquivo = new javax.swing.JButton();
+        jButton_Zip = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,39 +79,71 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton_abrirArquivo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_abrirPasta)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_abrirArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_abrirPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_abrirArquivo)
-                    .addComponent(jButton_abrirPasta)))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jButton_abrirPasta)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jButton_abrirArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jRadioButton_GPS.setText("GPS");
+        jRadioButton_GPS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton_GPSMouseClicked(evt);
+            }
+        });
+        jRadioButton_GPS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton_GPSActionPerformed(evt);
+            }
+        });
+
+        jRadioButton_BIL.setText("BIL");
+        jRadioButton_BIL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButton_BILMouseClicked(evt);
+            }
+        });
+        jRadioButton_BIL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton_BILActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_areaDiretorioLayout = new javax.swing.GroupLayout(jPanel_areaDiretorio);
         jPanel_areaDiretorio.setLayout(jPanel_areaDiretorioLayout);
         jPanel_areaDiretorioLayout.setHorizontalGroup(
             jPanel_areaDiretorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_areaDiretorioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtFild_recDiretorio)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtFild_recDiretorio, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(12, 12, 12))
+            .addGroup(jPanel_areaDiretorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButton_GPS)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton_BIL)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_areaDiretorioLayout.setVerticalGroup(
             jPanel_areaDiretorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_areaDiretorioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel_areaDiretorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFild_recDiretorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel_areaDiretorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_areaDiretorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFild_recDiretorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel_areaDiretorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton_GPS)
+                    .addComponent(jRadioButton_BIL))
                 .addContainerGap())
         );
 
@@ -139,13 +179,24 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton_Zip.setText("Zip Arquivo Bil");
+        jButton_Zip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ZipActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_converterArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton_converterArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_Zip, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -158,12 +209,14 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton_converterArquivo)
+                .addGap(28, 28, 28)
+                .addComponent(jButton_Zip, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(35, 35, 35)
                     .addComponent(jButton_converterVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(34, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel_areaEventosLayout = new javax.swing.GroupLayout(jPanel_areaEventos);
@@ -174,16 +227,16 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(21, 21, 21))
         );
         jPanel_areaEventosLayout.setVerticalGroup(
             jPanel_areaEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_areaEventosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel_areaEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel_areaEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -203,9 +256,9 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addComponent(jPanel_areaDiretorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_areaEventos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -215,6 +268,7 @@ public class NewJFrame extends javax.swing.JFrame {
         diretorio = txtFild_recDiretorio.getText();
         try {
             converter.converter(this, diretorio);
+            // TODO Auto-generated catch block
         } catch (Exception ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -229,34 +283,54 @@ public class NewJFrame extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
     }//GEN-LAST:event_jButton_converterVariosMouseClicked
 
     private void jButton_abrirArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_abrirArquivoActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        int retorno = chooser.showOpenDialog(this);
-        if (retorno == JFileChooser.APPROVE_OPTION) {
-            txtFild_recDiretorio.setText(chooser.getSelectedFile().getAbsolutePath());
-        }
+        jButton_converterArquivo.setEnabled(true);
+        jButton_converterVarios.setEnabled(true);
+        jButton_Zip.setEnabled(true);
+        abrirArquivo();
     }//GEN-LAST:event_jButton_abrirArquivoActionPerformed
 
     private void jButton_abrirPastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_abrirPastaActionPerformed
-        diretorios = new ArrayList<>();
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int retorno = chooser.showOpenDialog(this);
-        if (retorno == JFileChooser.APPROVE_OPTION) {
-            File dados = chooser.getSelectedFile();
-            File arquivos[] = dados.listFiles();
-            for (int i = 0; i < arquivos.length; i++) {
-                diretorios.add(arquivos[i].getAbsolutePath());
-            }
-            txtFild_recDiretorio.setText(dados.getAbsolutePath());
-
-        }
+        jButton_converterArquivo.setEnabled(true);
+        jButton_converterVarios.setEnabled(true);
+        jButton_Zip.setEnabled(true);
+        abrirVariosArquivos();
     }//GEN-LAST:event_jButton_abrirPastaActionPerformed
 
+    private void jButton_ZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ZipActionPerformed
+        abrirVariosArquivos();
+        zipArquivo();
+    }//GEN-LAST:event_jButton_ZipActionPerformed
+
+    private void jRadioButton_GPSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton_GPSMouseClicked
+        jRadioButton_BIL.setSelected(false);
+        jRadioButton_GPS.setSelected(true);
+    }//GEN-LAST:event_jRadioButton_GPSMouseClicked
+
+    private void jRadioButton_BILMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton_BILMouseClicked
+        jRadioButton_GPS.setSelected(false);
+        jRadioButton_BIL.setSelected(true);
+    }//GEN-LAST:event_jRadioButton_BILMouseClicked
+
+    private void jRadioButton_BILActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_BILActionPerformed
+        if(jRadioButton_BIL.isSelected()) {
+            jButton_converterVarios.setEnabled(false);
+            jButton_converterArquivo.setEnabled(false);
+            jButton_Zip.setEnabled(true);
+        }
+    }//GEN-LAST:event_jRadioButton_BILActionPerformed
+
+    private void jRadioButton_GPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_GPSActionPerformed
+        if(jRadioButton_GPS.isSelected()) {
+            jButton_converterVarios.setEnabled(true);
+            jButton_converterArquivo.setEnabled(true);
+        }
+    }//GEN-LAST:event_jRadioButton_GPSActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -292,10 +366,9 @@ public class NewJFrame extends javax.swing.JFrame {
         });
     }
 
-    private void teste(int i) {
-        jTextField_linhasConvertidas.setText("teste" + "||");
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton_Zip;
     private javax.swing.JButton jButton_abrirArquivo;
     private javax.swing.JButton jButton_abrirPasta;
     private javax.swing.JButton jButton_converterArquivo;
@@ -305,6 +378,8 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel_areaDiretorio;
     private javax.swing.JPanel jPanel_areaEventos;
+    private javax.swing.JRadioButton jRadioButton_BIL;
+    private javax.swing.JRadioButton jRadioButton_GPS;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField_linhasConvertidas;
     private javax.swing.JTextField txtFild_recDiretorio;
@@ -314,8 +389,59 @@ public class NewJFrame extends javax.swing.JFrame {
         jTextField_linhasConvertidas.setText(x);
     }
 
-    void setjTextField_linhasConvertidas(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void abrirVariosArquivos() {
+        diretorios = new ArrayList<>();
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int retorno = chooser.showOpenDialog(this);
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            File dados = chooser.getSelectedFile();
+            File arquivos[] = dados.listFiles();
+            for (int i = 0; i < arquivos.length; i++) {
+                diretorios.add(arquivos[i].getAbsolutePath());
+            }
+            txtFild_recDiretorio.setText(dados.getAbsolutePath());
+
+        }
+    }
+
+    private void abrirArquivo() {
+        diretorios = new ArrayList<>();
+        JFileChooser chooser = new JFileChooser();
+        int retorno = chooser.showOpenDialog(this);
+
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            txtFild_recDiretorio.setText(chooser.getSelectedFile().getAbsolutePath());
+            diretorios.add(chooser.getSelectedFile().getAbsolutePath());
+        }
+    }
+
+    private void zipArquivo() {
+
+        new Thread() {
+            public void run() {
+
+                for (int i = 0; i < diretorios.size(); i++) {
+                    try {
+                        sleep(100);
+                        jTextField_linhasConvertidas.setText("Zipando Arquivo(s) " + i);
+                       
+                        if (jRadioButton_BIL.isSelected()) {
+                            zip.compactarParaZip(diretorios.get(i).replace(".bil", "") + ".zip", diretorios.get(i));
+                        } else {
+                            zip.compactarParaZip(diretorios.get(i).replace(".gps", "")+".zip",diretorios.get(i));
+                        }
+                        
+                    } catch (Exception ex) {
+                        Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+                jTextField_linhasConvertidas.setText("Arquivo(s) Zipado");
+
+            }
+        }.start();
     }
 
 }
+

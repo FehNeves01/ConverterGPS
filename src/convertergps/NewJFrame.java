@@ -316,7 +316,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton_BILMouseClicked
 
     private void jRadioButton_BILActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_BILActionPerformed
-        if(jRadioButton_BIL.isSelected()) {
+        if (jRadioButton_BIL.isSelected()) {
             jButton_converterVarios.setEnabled(false);
             jButton_converterArquivo.setEnabled(false);
             jButton_Zip.setEnabled(true);
@@ -324,13 +324,12 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton_BILActionPerformed
 
     private void jRadioButton_GPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_GPSActionPerformed
-        if(jRadioButton_GPS.isSelected()) {
+        if (jRadioButton_GPS.isSelected()) {
             jButton_converterVarios.setEnabled(true);
             jButton_converterArquivo.setEnabled(true);
         }
     }//GEN-LAST:event_jRadioButton_GPSActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -397,22 +396,44 @@ public class NewJFrame extends javax.swing.JFrame {
         if (retorno == JFileChooser.APPROVE_OPTION) {
             File dados = chooser.getSelectedFile();
             File arquivos[] = dados.listFiles();
-            for (int i = 0; i < arquivos.length; i++) {
-                diretorios.add(arquivos[i].getAbsolutePath());
+
+            String sistemaOperacional = descobreSistemaOperacional();
+                
+            if (sistemaOperacional != "macOs x") {
+                for (int i = 0; i < arquivos.length; i++) {
+                    diretorios.add(arquivos[i].getAbsolutePath().replace("\\", "\\\\"));
+                }
+                txtFild_recDiretorio.setText(dados.getAbsolutePath().replace("\\", "\\\\"));
+            } else {
+                for (int i = 0; i < arquivos.length; i++) {
+                    diretorios.add(arquivos[i].getAbsolutePath());
+                }
+                txtFild_recDiretorio.setText(dados.getAbsolutePath());
+
             }
-            txtFild_recDiretorio.setText(dados.getAbsolutePath());
 
         }
     }
 
     private void abrirArquivo() {
+
+        String sistemaOperacional = descobreSistemaOperacional();
         diretorios = new ArrayList<>();
         JFileChooser chooser = new JFileChooser();
         int retorno = chooser.showOpenDialog(this);
 
         if (retorno == JFileChooser.APPROVE_OPTION) {
-            txtFild_recDiretorio.setText(chooser.getSelectedFile().getAbsolutePath());
-            diretorios.add(chooser.getSelectedFile().getAbsolutePath());
+            String diretorio = chooser.getSelectedFile().getAbsolutePath();
+            if (sistemaOperacional != "macOs x") {
+                diretorio = diretorio.replace("\\", "\\\\");
+
+                txtFild_recDiretorio.setText(diretorio);
+                diretorios.add(diretorio);
+            } else {
+                txtFild_recDiretorio.setText(diretorio);
+                diretorios.add(diretorio);
+            }
+
         }
     }
 
@@ -425,13 +446,13 @@ public class NewJFrame extends javax.swing.JFrame {
                     try {
                         sleep(100);
                         jTextField_linhasConvertidas.setText("Zipando Arquivo(s) " + i);
-                       
+
                         if (jRadioButton_BIL.isSelected()) {
                             zip.compactarParaZip(diretorios.get(i).replace(".bil", "") + ".zip", diretorios.get(i));
                         } else {
-                            zip.compactarParaZip(diretorios.get(i).replace(".gps", "")+".zip",diretorios.get(i));
+                            zip.compactarParaZip(diretorios.get(i).replace(".gps", "") + ".zip", diretorios.get(i));
                         }
-                        
+
                     } catch (Exception ex) {
                         Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -443,5 +464,9 @@ public class NewJFrame extends javax.swing.JFrame {
         }.start();
     }
 
-}
+    private String descobreSistemaOperacional() {
 
+        return System.getProperty("os.name");
+    }
+
+}

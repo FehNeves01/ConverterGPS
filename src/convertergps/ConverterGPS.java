@@ -89,25 +89,53 @@ public class ConverterGPS {
         }.start();
     }
 
-    public static String corrigindoDiretorio(String str_Diretorio, String tipoArquivo) {
-        String[] array_str_Dir = str_Diretorio.split("/");
-        String str_newDiretorio = "";
-        int int_ultimalinha = (array_str_Dir.length) - 1;
+    public String corrigindoDiretorio(String str_Diretorio, String tipoArquivo) {
+        if (descobreSistemaOperacional() != "MacOs") {
 
-        String str_dataArquivo = array_str_Dir[int_ultimalinha];
-        String array_str_dovidindoData[] = str_dataArquivo.split("-");
-        String anoTxt = array_str_dovidindoData[array_str_dovidindoData.length - 1];
+            String[] array_str_Dir = str_Diretorio.split("\\\\");
+            String str_newDiretorio = "";
+            int int_ultimalinha = (array_str_Dir.length) - 1;
 
-        String array_str_ano[] = anoTxt.split(".txt");
+            String str_dataArquivo = array_str_Dir[int_ultimalinha];
+            String array_str_dovidindoData[] = str_dataArquivo.split("-");
+            String anoTxt = array_str_dovidindoData[array_str_dovidindoData.length - 1];
 
-        str_dataArquivo = array_str_ano[0] + "-" + array_str_dovidindoData[1] + "-" + array_str_dovidindoData[0];
-        for (int i = 0; i < array_str_Dir.length - 1; i++) {
-            str_newDiretorio += array_str_Dir[i] + "/";
+            String array_str_ano[] = anoTxt.split(".txt");
+
+            str_dataArquivo = array_str_ano[0] + "-" + array_str_dovidindoData[1] + "-" + array_str_dovidindoData[0];
+            for (int i = 0; i < array_str_Dir.length - 1; i++) {
+                str_newDiretorio += array_str_Dir[i] + "\\";
+            }
+            str_newDiretorio += str_dataArquivo + tipoArquivo;
+
+            System.out.println(str_newDiretorio);
+            return str_newDiretorio;
+        } else {
+
+            String[] array_str_Dir = str_Diretorio.split("/");
+            String str_newDiretorio = "";
+            int int_ultimalinha = (array_str_Dir.length) - 1;
+
+            String str_dataArquivo = array_str_Dir[int_ultimalinha];
+            String array_str_dovidindoData[] = str_dataArquivo.split("-");
+            String anoTxt = array_str_dovidindoData[array_str_dovidindoData.length - 1];
+
+            String array_str_ano[] = anoTxt.split(".txt");
+
+            str_dataArquivo = array_str_ano[0] + "-" + array_str_dovidindoData[1] + "-" + array_str_dovidindoData[0];
+            
+            for (int i = 0; i < array_str_Dir.length - 1; i++) {
+                str_newDiretorio += array_str_Dir[i] + "/";
+            }
+            str_newDiretorio += str_dataArquivo + tipoArquivo;
+
+            System.out.println(str_newDiretorio);
+            return str_newDiretorio;
         }
-        str_newDiretorio += str_dataArquivo + tipoArquivo;
-
-        System.out.println(str_newDiretorio);
-        return str_newDiretorio;
     }
 
+    private String descobreSistemaOperacional() {
+
+        return System.getProperty("os.name");
+    }
 }
